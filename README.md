@@ -1,63 +1,58 @@
-# 데이터베이스 모델링 및 ERD 및 MySQL 활용하기
+# 테이블 정의서를 보고 설계한 최종 물리적 모델
 
-- MySQL (DBMS 8.x)
-  : RDBMS 를 다룬다. (Relation : 관계)
+## MySQL 실행
 
-## 1. 요구사항 분석
+- `services.msc` 에서 MySQL 서비스 실행
+- `cmd` 에서 `net start mysql` 명령어로 실행
+- `cmd` 에서 `mysql -u root -p` 명령어로 접속
+- `cmd` 에서 `mysql -u root -p < 파일명.sql` 명령어로 파일 실행
 
-- 회의 참석 (회의록)
-- 회의록 검토 후 각 사항을 요구 사항 분서 (요구사항정의서, 업무지시서)
+## MySQL Workbench 에서 설계
 
-## 2. 요구사항 분석을 하는 이유
+![image](https://github.com/user-attachments/assets/9dd9565a-e5cb-4dbd-98a0-3ecac5b6c6a9)
+![image](https://github.com/user-attachments/assets/cd4e645f-0a40-4742-b66d-86bbc2f1ff89)
+![image](https://github.com/user-attachments/assets/11acb7fb-7bf9-4900-af41-9ee66aef46e8)
+![image](https://github.com/user-attachments/assets/b600ecfe-ca7f-4f5a-8010-febde8d2427f)
+![image](https://github.com/user-attachments/assets/79d31c57-0be1-40f8-968b-5b568f1ee4ec)
+![image](https://github.com/user-attachments/assets/3f4d7af7-2be9-4617-8a3a-58a4229ce846)
 
-- 각 내용의 속성을 찾고, 분류
-- 분류 된 내용을 모아서 Entity 를 생성한다.
-- Entity 와 Entity 간의 관계를 찾는다.
-- 요구사항 정의서 작성
+- **CREATE DATABASE study;**
+  - semicolon 을 붙여야 한다.
 
-### 2.1. 요구사항 분석 예
+```sql
+CREATE DATABASE study;
+```
 
-- 고객은 고객코드, 고객명, 전화번호, 이메일, 주소(기본주소 , 상세주소), 지역 , 가입일로 되어있다.
-- 고객은 지역별로 관리되도록 한다.
-- 지역은 지역코드와 지역명으로 되어 있고 지역명은 대한민국의 지역코드 (02:서울특별시)를 이용한다.
-- 한 지역에는 여러 고객이 있을 수 있다.
-- 제품은 제품코드 , 제품명 , 제품색상 , 가격으로 되어있다.
-- 하나의 제품은 여러 색상을 가질 수가 있다.
-- 고객은 등록된 제품을 구매 할 수 있다.
-- 한 명의 고객은 여러 제품을 구매 할 수 있고 , 하 나의 제품은 여러 고객이 구매 할 수 있다.
-- 고객이 제품을 구매 시 구매수량과 구매일자를 기록한다.
+- schema 탭을 선택해야 한다.
 
-### 2.2. 요구사항 정의서 또는 업무 기술서 (회사마다 포맷이 다르다.)
+![image](https://github.com/user-attachments/assets/2ac4332c-d7a7-442c-a404-3249c19e9ec0)
+![image](https://github.com/user-attachments/assets/283b52fe-1128-4977-a717-bbf13058a3fb)
+![image](https://github.com/user-attachments/assets/f87e74dd-9cb8-4ea3-9cbe-cec0d8ef2269)
 
-![Image](https://github.com/user-attachments/assets/2487034b-ac24-4a7d-8311-560b661bbca3)
+- 다이어그램을 그리기 위해서 Reverse Engineer 를 선택
 
-### 2.3. 속성(Arribute)을 찾기 후 Entity 정의하기
+![image](https://github.com/user-attachments/assets/bc0a3101-f710-4145-af1b-26b54577eaf8)
 
-- 데이터 베이스 설계 전문가는 Entity 정의 후 속성을 선별해 나간다.
-- 신입 데이터 설계자는 Arribute를 선별 후 Entity 를 정의함.
+![image](https://github.com/user-attachments/assets/1cc461c5-6dd3-4ac2-bdaa-7dc2bf451424)
 
-#### 2.3.1. 먼저 Entity 항목정리
+![image](https://github.com/user-attachments/assets/28578b93-a92f-49b9-a3ed-0ad731291dba)
 
-: 명사소문자 추춴
-![Image](https://github.com/user-attachments/assets/c436bc07-4d36-4ef0-95e8-003c8986e5e6)
+- 어떤 DB 를 그릴지 선택
 
-#### 2.3.2. Entity 와 Entity 의 관계정리
+![image](https://github.com/user-attachments/assets/8a32105a-ef9c-49e0-9ad0-adc218a3459f)
 
-: 동사소문자 추춴
-![Image](https://github.com/user-attachments/assets/fbdd51a4-5598-4255-9eb5-bd692c4c7906)
+![image](https://github.com/user-attachments/assets/563377a5-264f-47d3-b39e-1c7b1da0622e)
 
-## 3. ERD 그리기
+![image](https://github.com/user-attachments/assets/8f05bf4d-f807-48ee-8dfd-443e8500230c)
 
-### 3.1. 개념적 모델링
+![image](https://github.com/user-attachments/assets/35679672-5ec1-470e-9a24-2c20277aaa7f)
 
-- Entity-Relationship Diagram
-  ![Image](https://github.com/user-attachments/assets/8850d53f-139d-4b6f-aa56-f381c30aebc5)
+![image](https://github.com/user-attachments/assets/370bb646-1af1-444a-b2e3-1eec3fdeadf9)
 
-### 3.2. 논리적 모델링
+![image](https://github.com/user-attachments/assets/d1d835e9-1fbe-4444-a7f6-2b8cdc3b86da)
 
-![Image](https://github.com/user-attachments/assets/b5610af3-1607-40ff-9d52-048dbf7c530a)
+- 자동으로 나온다.
 
-### 3.3. 물리적 모델링
+## 작성순서
 
-- 고객 PK 후보
-  ![Image](https://github.com/user-attachments/assets/c692dedf-40cd-4773-9d62-932b89df0736)
+- 참조를 해야 하므로 지역 부터 작성
